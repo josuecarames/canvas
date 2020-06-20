@@ -1,0 +1,263 @@
+/* Elements by type */
+
+html {
+    font-family: Light, sans-serif; /* This is Lato */
+}
+
+header {
+    padding: 0%;
+    margin: 0%;
+}
+
+nav {
+    height: 2%;
+}
+
+body {
+    margin: 0%;
+    padding: 0%;
+}
+
+main {
+    margin: 1% 5%;
+}
+
+footer {
+    background-color: #000000c0;
+    color: #ffffffdd;
+    line-height: 175%;
+    padding: 5%;
+    text-align: center;
+    vertical-align: center; 
+}
+
+/* Elements by id are linked with # */   
+
+
+#fcbanner {
+    width: 100%;
+    border-bottom-width: 40%;
+    border-bottom-style: solid;
+    border-bottom-color: #cc8b3d;
+
+}
+
+#logonavigation {
+    width: 100%;
+    margin: .5%;
+    padding: 0;
+    float: left;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#pagetitle {
+    margin: 1%;
+    display: block;
+    padding: .25%;
+    float: left;
+}
+
+#bodyimages {
+    float: auto;
+    max-width: 1254.4px;
+    min-width: 104.5333333333333333px;
+    margin: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: 0.25s ease-in-out;
+}
+
+#bodyimages:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+#anchor_footer {
+    text-decoration: none;
+    color: #ffffffdd;
+    transition: 0.25s ease-in-out;
+}
+
+#anchor_footer:hover {
+    cursor: pointer;
+    color: #00009cc7;
+}
+
+/* Elements by class are linked with . */
+
+
+/* Large 2561 and 3840 */
+
+@media only screen and (min-width: 2561px) and (max-width: 3840px){
+    
+    #logonavigation {
+        max-width: 60px;
+    }
+
+    #pagetitle {
+        font-size: 1.5em;
+    }
+
+    #mobile_menu {
+        display: none;
+    }
+
+    .ui-button {
+        display: inline-block;
+        font-size: 200%;
+    }
+
+    #bodyimages {
+        width: 22.5%;
+    }
+
+    footer {
+        font-size: 90%;
+    }   
+
+}
+
+/* Standard 1024 to 2560 */
+
+@media only screen and (min-width: 1025px) and (max-width: 2560px){
+       
+
+        #logonavigation {
+            max-width: 45px;
+        }
+
+        #pagetitle {
+            font-size: 1.5em;
+        }
+
+       #mobile_menu {
+           display: none;
+       }
+   
+       .ui-button {
+           display: inline-block;
+           font-size: 100%;
+       }
+
+       #bodyimages {
+        width: 22.5%;
+    }
+
+       footer {
+        font-size: 120%;
+    }   
+   
+   }
+
+/* tablet landscape 750 to standard 1024 */
+
+@media only screen and (min-width: 750px) and (max-width: 1024px){
+
+    #logonavigation {
+        max-width: 30px;
+    }
+
+    #pagetitle {
+        font-size: 1.25em;
+    }
+
+    #mobile_menu {
+        display: block;
+    }
+    
+    .ui-button {
+        display: none;
+    }
+    
+    #bodyimages {
+        width: 30.5%;
+    }
+
+    footer {
+        font-size: 75%;
+    }   
+
+   }
+
+/* tablet portrait 568 to tablet landscape 749 */
+
+@media only screen and (min-width: 568px) and (max-width: 749px){
+
+    #logonavigation {
+        max-width: 30px;
+    }
+
+    #pagetitle {
+        font-size: 1em;
+    }
+
+    #mobile_menu {
+        display: block;
+    }
+    
+    .ui-button {
+        display: none;
+    }
+
+    #bodyimages {
+        width: 47.5%;
+    }
+
+    footer {
+        font-size: 65%;
+    }   
+
+   }
+
+
+
+/* mobile portrait 320 to mobile landscape or tablet portrait 567 */
+
+@media only screen and (min-width: 320px) and (max-width: 567px){
+
+    #logonavigation {
+        max-width: 20px;
+    }
+
+    #mobile_menu {
+        display: block;
+    }
+
+    .ui-button {
+        display: none;
+    }
+
+    #bodyimages {
+        width: 99%;
+    }
+
+    footer {
+        font-size: 65%;
+    }   
+
+}
+
+/* below than mobile portrait 320 */
+
+@media only screen and (max-width: 319px){
+
+    #logonavigation {
+        max-width: 20px;
+    }
+
+    #mobile_menu {
+        display: block;
+    }
+
+    .ui-button {
+        display: none;
+    }
+
+    #bodyimages {
+        width: 99%;
+    }
+
+    footer {
+        font-size: 50%;
+    }   
+
+}

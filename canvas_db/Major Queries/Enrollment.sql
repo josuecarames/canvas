@@ -1,0 +1,40 @@
+SELECT
+account_dim.name AS "Account Name"
+, account_dim.workflow_state AS "Account Status"
+, enrollment_term_dim.name AS "Term Name"
+, enrollment_term_dim.date_start AS "Term Start On"
+, enrollment_term_dim.date_end AS "Term Ends On"
+, course_dim.sis_source_id As "Course SIS"
+, course_dim.code AS "Course Catalog"
+, course_dim.name AS "Course Name"
+, course_dim.created_at AS "Course Created At"
+, course_dim.start_at AS "Course Started At"
+, course_dim.conclude_at AS "Course Concluded At"
+, course_dim.workflow_state AS "Course State"
+, enrollment_dim.type AS "Enrollee Type"
+, enrollment_dim.self_enrolled AS "Enrollee is Self-Enrolled"
+, enrollment_dim.created_at AS "Enrollee Created At"
+, enrollment_dim.start_at AS "Enrollee Start At"
+, enrollment_dim.updated_at AS "Enrollee Updated At"
+, enrollment_dim.last_activity_at AS "Enrollee Last Activity At"
+, enrollment_dim.end_at AS "Enrollee End At"
+, enrollment_dim.completed_at AS "Enrollee Completed At"
+, enrollment_dim.workflow_state AS "Enrollee State"
+, user_dim.name AS "User Name"
+, user_dim.gender AS "User Gender"
+, user_dim.birthdate AS "User Birthdate"
+, user_dim.school_name AS "User School"
+, user_dim.school_position AS "User School Position"
+, user_dim.country_code AS "User Country"
+, user_dim.locale AS "User Locale"
+, user_dim.time_zone AS "User Time Zone"
+, user_dim.created_at AS "User Created At"
+, user_dim.workflow_state AS "User Status"
+, enrollment_fact.computed_current_score AS "Computed Current Score"
+, enrollment_fact.computed_final_score AS "Computed Final Score"
+FROM enrollment_fact
+JOIN account_dim ON account_dim.id = enrollment_fact.course_account_id
+JOIN enrollment_dim ON enrollment_dim.id = enrollment_fact.enrollment_id
+JOIN enrollment_term_dim ON enrollment_term_dim.id = enrollment_fact.enrollment_term_id
+JOIN course_dim ON course_dim.id = enrollment_fact.course_id
+JOIN user_dim ON user_dim.id = enrollment_fact.user_id;
