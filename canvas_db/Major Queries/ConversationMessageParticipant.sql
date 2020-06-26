@@ -43,14 +43,14 @@ account_dim.name AS "Account Name"
 , conversation_message_participant_fact.message_character_count AS "Message Character Count"
 , conversation_message_participant_fact.message_size_bytes AS "Message Size in Bytes"
 FROM conversation_message_participant_fact
-JOIN conversation_dim ON conversation_dim.id = conversation_message_participant_fact.conversation_id
-JOIN conversation_message_dim ON conversation_message_dim.id = conversation_message_participant_fact.conversation_message_id
-JOIN user_dim ON user_dim.id = conversation_message_participant_fact.user_id
-LEFT JOIN account_dim ON account_dim.id = conversation_message_participant_fact.account_id
-LEFT JOIN course_dim ON course_dim.id = conversation_message_participant_fact.course_id
-LEFT JOIN enrollment_rollup_dim ON enrollment_rollup_dim.id = conversation_message_participant_fact.enrollment_rollup_id
-LEFT JOIN enrollment_term_dim ON enrollment_term_dim.id = conversation_message_participant_fact.enrollment_term_id
-LEFT JOIN group_dim ON group_dim.id = conversation_message_participant_fact.group_id
+INNER JOIN conversation_dim ON conversation_dim.id = conversation_message_participant_fact.conversation_id
+INNER JOIN conversation_message_dim ON conversation_message_dim.id = conversation_message_participant_fact.conversation_message_id
+INNER JOIN user_dim ON user_dim.id = conversation_message_participant_fact.user_id
+LEFT OUTER JOIN account_dim ON account_dim.id = conversation_message_participant_fact.account_id
+LEFT OUTER JOIN course_dim ON course_dim.id = conversation_message_participant_fact.course_id
+LEFT OUTER JOIN enrollment_rollup_dim ON enrollment_rollup_dim.id = conversation_message_participant_fact.enrollment_rollup_id
+LEFT OUTER JOIN enrollment_term_dim ON enrollment_term_dim.id = conversation_message_participant_fact.enrollment_term_id
+LEFT OUTER JOIN group_dim ON group_dim.id = conversation_message_participant_fact.group_id
 WHERE account_dim.name = "Fuller Theological Seminary"
 AND account_dim.workflow_state != "deleted"
 AND enrollment_term_dim.name NOT IN ("All Other Courses", "Course Development (DL)", "Course Development (Faculty)", "Default Term", "Fuller Canvas Templates", "Orientation 2017", "Orientation 2018", "Orientation 2019", "Orientation 2020")

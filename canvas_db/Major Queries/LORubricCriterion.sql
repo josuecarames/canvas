@@ -23,8 +23,8 @@ account_dim.name AS "Account Name"
 , learning_outcome_rubric_criterion_dim.description AS "LO Rubric Criterion Description"
 , learning_outcome_rubric_criterion_fact.points AS "LO Rubric Criterion Points"
 FROM learning_outcome_rubric_criterion_fact
-JOIN account_dim ON account_dim.id = learning_outcome_rubric_criterion_fact.account_id
-JOIN learning_outcome_dim ON learning_outcome_dim.id = learning_outcome_rubric_criterion_fact.learning_outcome_id
-JOIN learning_outcome_rubric_criterion_dim ON learning_outcome_rubric_criterion_dim.id = learning_outcome_rubric_criterion_fact.learning_outcome_rubric_criterion_id
-LEFT JOIN course_dim ON course_dim.id = learning_outcome_rubric_criterion_fact.course_id
-LEFT JOIN enrollment_term_dim ON enrollment_term_dim.id = learning_outcome_rubric_criterion_fact.enrollment_term_id;
+INNER JOIN account_dim ON account_dim.id = learning_outcome_rubric_criterion_fact.account_id
+INNER JOIN learning_outcome_dim ON learning_outcome_dim.id = learning_outcome_rubric_criterion_fact.learning_outcome_id
+INNER JOIN learning_outcome_rubric_criterion_dim ON learning_outcome_rubric_criterion_dim.id = learning_outcome_rubric_criterion_fact.learning_outcome_rubric_criterion_id
+LEFT OUTER JOIN course_dim ON course_dim.id = learning_outcome_rubric_criterion_fact.course_id
+LEFT OUTER JOIN enrollment_term_dim ON enrollment_term_dim.id = learning_outcome_rubric_criterion_fact.enrollment_term_id;

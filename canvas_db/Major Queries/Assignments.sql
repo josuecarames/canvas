@@ -38,10 +38,10 @@ enrollment_term_dim.name AS "Term Name"
 , assignment_dim.position AS "Assignment Position"
 , assignment_dim.workflow_state AS "Assignment State"
 FROM assignment_fact
-JOIN assignment_dim ON assignment_dim.id = assignment_fact.assignment_id
-JOIN course_dim ON course_dim.id = assignment_fact.course_id
-JOIN enrollment_term_dim ON enrollment_term_dim.id = assignment_fact.enrollment_term_id
-JOIN assignment_group_dim ON assignment_group_dim.id = assignment_fact.assignment_group_id
+INNER JOIN assignment_dim ON assignment_dim.id = assignment_fact.assignment_id
+INNER JOIN course_dim ON course_dim.id = assignment_fact.course_id
+INNER JOIN enrollment_term_dim ON enrollment_term_dim.id = assignment_fact.enrollment_term_id
+INNER JOIN assignment_group_dim ON assignment_group_dim.id = assignment_fact.assignment_group_id
 WHERE enrollment_term_dim.name NOT IN ("All Other Courses", "Course Development (DL)", "Course Development (Faculty)", "Default Term", "Fuller Canvas Templates", "Orientation 2017", "Orientation 2018", "Orientation 2019", "Orientation 2020")
 AND course_dim.workflow_state != "deleted"
 AND course_dim.sis_source_id IS NOT NULL

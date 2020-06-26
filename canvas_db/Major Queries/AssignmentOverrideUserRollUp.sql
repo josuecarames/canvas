@@ -116,16 +116,16 @@ enrollment_term_dim.name AS "Term Name"
 , enrollment_dim.completed_at AS "Enrollee Completed At"
 , enrollment_dim.workflow_state AS "Enrollee State"
 FROM assignment_override_user_rollup_fact
-JOIN assignment_override_dim ON assignment_override_dim.id = assignment_override_user_rollup_fact.assignment_override_id
-JOIN course_dim ON course_dim.id = assignment_override_user_rollup_fact.course_id
-JOIN enrollment_term_dim ON enrollment_term_dim.id = assignment_override_user_rollup_fact.enrollment_term_id
-JOIN user_dim ON user_dim.id = assignment_override_user_rollup_fact.user_id
-LEFT JOIN assignment_group_dim ON assignment_group_dim.id = assignment_override_user_rollup_fact.assignment_group_id
-LEFT JOIN assignment_dim ON assignment_dim.id = assignment_override_user_rollup_fact.assignment_id 
-LEFT JOIN quiz_dim ON quiz_dim.id = assignment_override_user_rollup_fact.quiz_id
-LEFT JOIN course_section_dim ON course_section_dim.id = assignment_override_user_rollup_fact.course_section_id
-LEFT JOIN enrollment_dim ON enrollment_dim.id = assignment_override_user_rollup_fact.enrollment_id
-LEFT JOIN group_dim ON group_dim.id = assignment_override_user_rollup_fact.group_id
+INNER JOIN assignment_override_dim ON assignment_override_dim.id = assignment_override_user_rollup_fact.assignment_override_id
+INNER JOIN course_dim ON course_dim.id = assignment_override_user_rollup_fact.course_id
+INNER JOIN enrollment_term_dim ON enrollment_term_dim.id = assignment_override_user_rollup_fact.enrollment_term_id
+INNER JOIN user_dim ON user_dim.id = assignment_override_user_rollup_fact.user_id
+LEFT OUTER JOIN assignment_group_dim ON assignment_group_dim.id = assignment_override_user_rollup_fact.assignment_group_id
+LEFT OUTER JOIN assignment_dim ON assignment_dim.id = assignment_override_user_rollup_fact.assignment_id 
+LEFT OUTER JOIN quiz_dim ON quiz_dim.id = assignment_override_user_rollup_fact.quiz_id
+LEFT OUTER JOIN course_section_dim ON course_section_dim.id = assignment_override_user_rollup_fact.course_section_id
+LEFT OUTER JOIN enrollment_dim ON enrollment_dim.id = assignment_override_user_rollup_fact.enrollment_id
+LEFT OUTER JOIN group_dim ON group_dim.id = assignment_override_user_rollup_fact.group_id
 WHERE enrollment_term_dim.name NOT IN ("All Other Courses", "Course Development (DL)", "Course Development (Faculty)", "Default Term", "Fuller Canvas Templates", "Orientation 2017", "Orientation 2018", "Orientation 2019", "Orientation 2020")
 AND course_dim.workflow_state != "deleted"
 AND course_dim.sis_source_id IS NOT NULL

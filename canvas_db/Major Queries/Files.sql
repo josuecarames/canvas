@@ -135,25 +135,24 @@ LEFT OUTER JOIN account_dim ON account_dim.id = file_fact.account_id
 LEFT OUTER JOIN assignment_dim ON assignment_dim.id = file_fact.assignment_id
 LEFT OUTER JOIN assignment_group_dim ON assignment_group_dim.id = file_fact.assignment_group_id
 LEFT OUTER JOIN conversation_dim ON conversation_dim.id = file_fact.conversation_id
--- conversation_message_author_dim table is missing
+-- LEFT OUTER JOIN conversation_message_author_dim ON conversation_message_author_dim.id = file_fact.conversation_message_author_id
 LEFT OUTER JOIN conversation_message_dim ON conversation_message_dim.id = file_fact.conversation_message_id
 LEFT OUTER JOIN course_dim ON course_dim.id = file_fact.course_id
 LEFT OUTER JOIN enrollment_rollup_dim ON enrollment_rollup_dim.id = file_fact.enrollment_rollup_id
 LEFT OUTER JOIN enrollment_term_dim ON enrollment_term_dim.id = file_fact.enrollment_term_id
--- folder_dim table is missing
--- grader_dim table is missing
+-- LEFT OUTER JOIN folder_dim ON folder_dim.id = file_fact.folder_id
+-- LEFT OUTER JOIN grader_dim ON grader_dim.id = file_fact.grader_id
 LEFT OUTER JOIN group_dim ON group_dim.id = file_fact.group_id
--- group_category_dim table is missing
+-- LEFT OUTER JOIN group_category_dim ON group_category_dim.id = file_fact.group_category_id
 LEFT OUTER JOIN quiz_dim ON quiz_dim.id = file_fact.quiz_id
 LEFT OUTER JOIN quiz_submission_dim ON quiz_submission_dim.id = file_fact.quiz_submission_id
--- replacement_file_dim table is missing
--- root_file_dim table is missing
--- sis_source_dim table is missing
+-- LEFT OUTER JOIN replacement_file_dim ON replacement_file_dim.id = file_fact.replacement_file_id
+-- LEFT OUTER JOIN root_file_dim ON root_file_dim.id = file_fact.root_file_id
+-- LEFT OUTER JOIN sis_source_dim ON sis_source_dim.id = file_fact.sis_source_id
 LEFT OUTER JOIN submission_dim ON submission_dim.id = file_fact.submission_id
--- uploader_dim table is missing
+-- LEFT OUTER JOIN uploader_dim ON uploader_dim.id = file_fact.uploader_id
 LEFT OUTER JOIN user_dim ON user_dim.id = file_fact.user_id
 LEFT OUTER JOIN wiki_dim ON wiki_dim.id = file_fact.wiki_id
--- General conditions
 WHERE account_dim.name = "Fuller Theological Seminary"
 AND account_dim.workflow_state != "deleted"
 AND enrollment_term_dim.name NOT IN ("All Other Courses", "Course Development (DL)", "Course Development (Faculty)", "Default Term", "Fuller Canvas Templates", "Orientation 2017", "Orientation 2018", "Orientation 2019", "Orientation 2020")

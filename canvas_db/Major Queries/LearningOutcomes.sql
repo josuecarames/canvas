@@ -1,3 +1,4 @@
+USE canvas;
 SELECT
 account_dim.name AS "Account Name"
 , account_dim.workflow_state AS "Account Status"
@@ -22,7 +23,7 @@ account_dim.name AS "Account Name"
 , learning_outcome_dim.updated_at AS "LO Updated At"
 , learning_outcome_dim.workflow_state AS "LO State"
 FROM learning_outcome_fact
-JOIN learning_outcome_dim ON learning_outcome_dim.id = learning_outcome_fact.learning_outcome_id
-LEFT JOIN course_dim ON course_dim.id = learning_outcome_fact.course_id
-LEFT JOIN account_dim ON account_dim.id = learning_outcome_fact.account_id
-LEFT JOIN enrollment_term_dim ON enrollment_term_dim.id = learning_outcome_fact.enrollment_term_id;
+INNER JOIN learning_outcome_dim ON learning_outcome_dim.id = learning_outcome_fact.learning_outcome_id
+INNER JOIN account_dim ON account_dim.id = learning_outcome_fact.account_id
+LEFT OUTER JOIN course_dim ON course_dim.id = learning_outcome_fact.course_id
+LEFT OUTER JOIN enrollment_term_dim ON enrollment_term_dim.id = learning_outcome_fact.enrollment_term_id;

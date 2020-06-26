@@ -103,11 +103,11 @@ INNER JOIN account_dim ON account_dim.id = assignment_override_fact.account_id
 INNER JOIN course_dim ON course_dim.id = assignment_override_fact.course_id
 INNER JOIN enrollment_term_dim ON enrollment_term_dim.id = assignment_override_fact.enrollment_term_id
 INNER JOIN assignment_override_dim ON assignment_override_dim.id = assignment_override_fact.assignment_override_id
-LEFT JOIN group_dim ON group_dim.id = assignment_override_fact.group_id
-LEFT JOIN quiz_dim ON quiz_dim.id = assignment_override_fact.quiz_id
-LEFT JOIN assignment_group_dim ON assignment_group_dim.id = assignment_override_fact.assignment_group_id
-LEFT JOIN assignment_dim ON assignment_dim.id = assignment_override_fact.assignment_id
-LEFT JOIN course_section_dim ON course_section_dim.id = assignment_override_fact.course_section_id
+LEFT OUTER JOIN group_dim ON group_dim.id = assignment_override_fact.group_id
+LEFT OUTER JOIN quiz_dim ON quiz_dim.id = assignment_override_fact.quiz_id
+LEFT OUTER JOIN assignment_group_dim ON assignment_group_dim.id = assignment_override_fact.assignment_group_id
+LEFT OUTER JOIN assignment_dim ON assignment_dim.id = assignment_override_fact.assignment_id
+LEFT OUTER JOIN course_section_dim ON course_section_dim.id = assignment_override_fact.course_section_id
 WHERE account_dim.name = "Fuller Theological Seminary"
 AND account_dim.workflow_state != "deleted"
 AND enrollment_term_dim.name NOT IN ("All Other Courses", "Course Development (DL)", "Course Development (Faculty)", "Default Term", "Fuller Canvas Templates", "Orientation 2017", "Orientation 2018", "Orientation 2019", "Orientation 2020")

@@ -1,3 +1,4 @@
+USE canvas;
 SELECT 
 enrollment_term_dim.name AS "Term Name"
 , enrollment_term_dim.date_start AS "Term Start On"
@@ -62,8 +63,8 @@ enrollment_term_dim.name AS "Term Name"
 , submission_comment_fact.message_word_count AS "Submission Comment Word Count"
 , submission_comment_fact.message_character_count AS "Submission Comment Character Count"
 FROM submission_comment_fact
-JOIN assignment_dim ON assignment_dim.id = submission_comment_fact.assignment_id
-JOIN course_dim ON course_dim.id = submission_comment_fact.course_id
-JOIN enrollment_term_dim ON enrollment_term_dim.id = submission_comment_fact.enrollment_term_id
-JOIN submission_comment_dim ON submission_comment_dim.id = submission_comment_fact.submission_comment_id 
-LEFT JOIN submission_dim ON submission_dim.id = submission_comment_fact.submission_id;
+INNER JOIN assignment_dim ON assignment_dim.id = submission_comment_fact.assignment_id
+INNER JOIN course_dim ON course_dim.id = submission_comment_fact.course_id
+INNER JOIN enrollment_term_dim ON enrollment_term_dim.id = submission_comment_fact.enrollment_term_id
+INNER JOIN submission_comment_dim ON submission_comment_dim.id = submission_comment_fact.submission_comment_id 
+INNER JOIN submission_dim ON submission_dim.id = submission_comment_fact.submission_id;

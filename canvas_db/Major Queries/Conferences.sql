@@ -25,10 +25,10 @@ account_dim.name AS "Account Name"
 , conference_dim.started_at AS "Conference Started At"
 , conference_dim.end_at AS "Conference Ended At"
 FROM conference_fact
-JOIN conference_dim ON conference_dim.id = conference_fact.conference_id
-LEFT JOIN account_dim ON account_dim.id = conference_fact.account_id
-LEFT JOIN course_dim ON course_dim.id = conference_fact.course_id
-LEFT JOIN group_dim ON group_dim.id = conference_fact.group_id
+INNER JOIN conference_dim ON conference_dim.id = conference_fact.conference_id
+LEFT OUTER JOIN account_dim ON account_dim.id = conference_fact.account_id
+LEFT OUTER JOIN course_dim ON course_dim.id = conference_fact.course_id
+LEFT OUTER JOIN group_dim ON group_dim.id = conference_fact.group_id
 WHERE account_dim.name = "Fuller Theological Seminary"
 AND account_dim.workflow_state != "deleted"
 AND course_dim.workflow_state != "deleted"

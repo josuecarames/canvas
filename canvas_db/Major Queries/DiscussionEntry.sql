@@ -41,17 +41,17 @@ enrollment_term_dim.name AS "Term Name"
 , discussion_entry_dim.depth AS "Discussion Entry Depth"
 , discussion_entry_dim.workflow_state AS "Discussion Entry State"
 FROM discussion_entry_fact
-JOIN discussion_entry_dim ON discussion_entry_dim.id = discussion_entry_fact.discussion_entry_id
-JOIN user_dim ON user_dim.id = discussion_entry_fact.user_id
--- JOIN topic_dim ON topic_dim.id = discussion_entry_fact.topic_id
--- LEFT JOIN course_account_dim ON course_account_dim.id = discussion_entry_fact.course_account_id
-LEFT JOIN course_dim ON course_dim.id = discussion_entry_fact.course_id
-LEFT JOIN enrollment_rollup_dim ON enrollment_rollup_dim.id = discussion_entry_fact.enrollment_rollup_id
-LEFT JOIN enrollment_term_dim ON enrollment_term_dim.id = discussion_entry_fact.enrollment_term_id
--- LEFT JOIN parent_discussion_entry_dim ON parent_discussion_entry_dim.id = discussion_entry_fact.parent_discussion_entry_id
--- LEFT JOIN topic_assignment_dim ON topic_assignment_dim.id = discussion_entry_fact.topic_assignment_id
--- LEFT JOIN topic_editor_dim ON topic_editor_dim.id = discussion_entry_fact.topic_editor_id
--- LEFT JOIN topic_user_dim ON topic_user_dim.id = discussion_entry_fact.topic_user_id
+INNER JOIN discussion_entry_dim ON discussion_entry_dim.id = discussion_entry_fact.discussion_entry_id
+INNER JOIN user_dim ON user_dim.id = discussion_entry_fact.user_id
+-- INNER JOIN topic_dim ON topic_dim.id = discussion_entry_fact.topic_id
+-- LEFT OUTER JOIN course_account_dim ON course_account_dim.id = discussion_entry_fact.course_account_id
+LEFT OUTER JOIN course_dim ON course_dim.id = discussion_entry_fact.course_id
+LEFT OUTER JOIN enrollment_rollup_dim ON enrollment_rollup_dim.id = discussion_entry_fact.enrollment_rollup_id
+LEFT OUTER JOIN enrollment_term_dim ON enrollment_term_dim.id = discussion_entry_fact.enrollment_term_id
+-- LEFT OUTER JOIN parent_discussion_entry_dim ON parent_discussion_entry_dim.id = discussion_entry_fact.parent_discussion_entry_id
+-- LEFT OUTER JOIN topic_assignment_dim ON topic_assignment_dim.id = discussion_entry_fact.topic_assignment_id
+-- LEFT OUTER JOIN topic_editor_dim ON topic_editor_dim.id = discussion_entry_fact.topic_editor_id
+-- LEFT OUTER JOIN topic_user_dim ON topic_user_dim.id = discussion_entry_fact.topic_user_id
 WHERE enrollment_term_dim.name NOT IN ("All Other Courses", "Course Development (DL)", "Course Development (Faculty)", "Default Term", "Fuller Canvas Templates", "Orientation 2017", "Orientation 2018", "Orientation 2019", "Orientation 2020")
 AND course_dim.workflow_state != "deleted"
 AND course_dim.sis_source_id IS NOT NULL

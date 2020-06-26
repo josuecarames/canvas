@@ -73,11 +73,11 @@ LEFT OUTER JOIN group_dim ON group_dim.id = discussion_topic_fact.group_id
 LEFT OUTER JOIN assignment_dim ON assignment_dim.id = discussion_topic_fact.assignment_id
 LEFT OUTER JOIN course_dim ON course_dim.id = discussion_topic_fact.course_id
 LEFT OUTER JOIN user_dim ON user_dim.id = discussion_topic_fact.user_id
--- Not such a table JOIN course_account_dim ON course_account_dim.id = discussion_topic_fact.course_account_id
--- Not such a table JOIN editor_dim ON editor_dim.id = discussion_topic_fact.editor_id
--- Not such a table JOIN group_parent_account_dim ON group_parent_account_dim.id = discussion_topic_fact.group_parent_account_id
--- Not such a table JOIN group_parent_course_account_dim ON group_parent_course_account_dim.id = discussion_topic_fact.group_parent_course_account_id
--- Not such a table JOIN group_parent_course_dim ON group_parent_course_dim.id = discussion_topic_fact.group_parent_course_id
+-- LEFT OUTER JOIN course_account_dim ON course_account_dim.id = discussion_topic_fact.course_account_id
+-- LEFT OUTER JOIN editor_dim ON editor_dim.id = discussion_topic_fact.editor_id
+-- LEFT OUTER JOIN group_parent_account_dim ON group_parent_account_dim.id = discussion_topic_fact.group_parent_account_id
+-- LEFT OUTER JOIN group_parent_course_account_dim ON group_parent_course_account_dim.id = discussion_topic_fact.group_parent_course_account_id
+-- LEFT OUTER JOIN group_parent_course_dim ON group_parent_course_dim.id = discussion_topic_fact.group_parent_course_id
 WHERE enrollment_term_dim.name NOT IN ("All Other Courses", "Course Development (DL)", "Course Development (Faculty)", "Default Term", "Fuller Canvas Templates", "Orientation 2017", "Orientation 2018", "Orientation 2019", "Orientation 2020")
 AND course_dim.workflow_state != "deleted"
 AND course_dim.sis_source_id IS NOT NULL

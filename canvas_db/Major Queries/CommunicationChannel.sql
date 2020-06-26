@@ -17,7 +17,7 @@ communication_channel_fact.bounce_count AS "Communication Bounce Count"
 , user_dim.workflow_state AS "User Status"
 , user_dim.created_at AS "User Created At"
 FROM communication_channel_fact
-JOIN communication_channel_dim ON communication_channel_dim.id = communication_channel_fact.communication_channel_id
-JOIN user_dim ON user_dim.id = communication_channel_fact.user_id
+INNER JOIN communication_channel_dim ON communication_channel_dim.id = communication_channel_fact.communication_channel_id
+INNER JOIN user_dim ON user_dim.id = communication_channel_fact.user_id
 WHERE user_dim.workflow_state != "deleted"
 ;

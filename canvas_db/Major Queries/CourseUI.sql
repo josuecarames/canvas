@@ -19,11 +19,11 @@ enrollment_term_dim.name AS "Term Name"
 , external_tool_activation_dim.workflow_state AS "External Tool State"
 , external_tool_activation_dim.activation_target_type AS "External Tool Installed On"
 FROM course_ui_navigation_item_fact
-JOIN course_dim ON course_dim.id = course_ui_navigation_item_fact.course_id
-JOIN course_ui_navigation_item_dim ON course_ui_navigation_item_dim.id = course_ui_navigation_item_fact.course_ui_navigation_item_id
-JOIN enrollment_term_dim ON enrollment_term_dim.id = course_ui_navigation_item_fact.enrollment_term_id
-LEFT JOIN course_ui_canvas_navigation_dim ON course_ui_canvas_navigation_dim.id = course_ui_navigation_item_fact.course_ui_canvas_navigation_id
-LEFT JOIN external_tool_activation_dim ON external_tool_activation_dim.id = course_ui_navigation_item_fact.external_tool_activation_id
+INNER JOIN course_dim ON course_dim.id = course_ui_navigation_item_fact.course_id
+INNER JOIN course_ui_navigation_item_dim ON course_ui_navigation_item_dim.id = course_ui_navigation_item_fact.course_ui_navigation_item_id
+INNER JOIN enrollment_term_dim ON enrollment_term_dim.id = course_ui_navigation_item_fact.enrollment_term_id
+INNER JOIN course_ui_canvas_navigation_dim ON course_ui_canvas_navigation_dim.id = course_ui_navigation_item_fact.course_ui_canvas_navigation_id
+LEFT OUTER JOIN external_tool_activation_dim ON external_tool_activation_dim.id = course_ui_navigation_item_fact.external_tool_activation_id
 WHERE enrollment_term_dim.name NOT IN ("All Other Courses", "Course Development (DL)", "Course Development (Faculty)", "Default Term", "Fuller Canvas Templates", "Orientation 2017", "Orientation 2018", "Orientation 2019", "Orientation 2020")
 AND course_dim.workflow_state != "deleted"
 AND course_dim.sis_source_id IS NOT NULL

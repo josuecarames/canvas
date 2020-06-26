@@ -1,3 +1,4 @@
+USE canvas;
 SELECT 
 account_dim.name AS "Account Name"
 , account_dim.workflow_state AS "Account Status"
@@ -137,15 +138,15 @@ account_dim.name AS "Account Name"
 , wiki_dim.title AS "Wiki Title"
 , wiki_dim.updated_at AS "Wiki Updated At"
 FROM submission_fact
-JOIN account_dim ON account_dim.id = submission_fact.account_id
-JOIN assignment_dim ON assignment_dim.id = submission_fact.assignment_id
-JOIN course_dim ON course_dim.id = submission_fact.course_id
-JOIN enrollment_term_dim ON enrollment_term_dim.id = submission_fact.enrollment_term_id
-LEFT JOIN assignment_group_dim ON assignment_group_dim.id = submission_fact.assignment_group_id
-LEFT JOIN enrollment_rollup_dim ON enrollment_rollup_dim.id = submission_fact.enrollment_rollup_id
-LEFT JOIN group_dim ON group_dim.id = submission_fact.group_id
-LEFT JOIN quiz_dim ON quiz_dim.id = submission_fact.quiz_id
-LEFT JOIN quiz_submission_dim ON quiz_submission_dim.id = submission_fact.quiz_submission_id
-LEFT JOIN submission_dim ON submission_dim.id = submission_fact.submission_id
-LEFT JOIN user_dim ON user_dim.id = submission_fact.user_id
-LEFT JOIN wiki_dim ON wiki_dim.id = submission_fact.wiki_id;
+INNER JOIN account_dim ON account_dim.id = submission_fact.account_id
+INNER JOIN assignment_dim ON assignment_dim.id = submission_fact.assignment_id
+INNER JOIN course_dim ON course_dim.id = submission_fact.course_id
+INNER JOIN enrollment_term_dim ON enrollment_term_dim.id = submission_fact.enrollment_term_id
+INNER JOIN assignment_group_dim ON assignment_group_dim.id = submission_fact.assignment_group_id
+INNER JOIN submission_dim ON submission_dim.id = submission_fact.submission_id
+INNER JOIN user_dim ON user_dim.id = submission_fact.user_id
+LEFT OUTER JOIN enrollment_rollup_dim ON enrollment_rollup_dim.id = submission_fact.enrollment_rollup_id
+LEFT OUTER JOIN group_dim ON group_dim.id = submission_fact.group_id
+LEFT OUTER JOIN quiz_dim ON quiz_dim.id = submission_fact.quiz_id
+LEFT OUTER JOIN quiz_submission_dim ON quiz_submission_dim.id = submission_fact.quiz_submission_id
+LEFT OUTER JOIN wiki_dim ON wiki_dim.id = submission_fact.wiki_id;

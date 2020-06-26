@@ -99,9 +99,9 @@ INNER JOIN assignment_override_user_dim ON assignment_override_user_dim.id = ass
 INNER JOIN course_dim ON course_dim.id = assignment_override_user_fact.course_id
 INNER JOIN enrollment_term_dim ON enrollment_term_dim.id = assignment_override_user_fact.enrollment_term_id
 INNER JOIN user_dim ON user_dim.id = assignment_override_user_fact.user_id
-LEFT JOIN assignment_group_dim ON assignment_group_dim.id = assignment_override_user_fact.assignment_group_id
-LEFT JOIN assignment_dim ON assignment_dim.id = assignment_override_user_fact.assignment_id
-LEFT JOIN quiz_dim ON quiz_dim.id = assignment_override_user_fact.quiz_id
+LEFT OUTER JOIN assignment_group_dim ON assignment_group_dim.id = assignment_override_user_fact.assignment_group_id
+LEFT OUTER JOIN assignment_dim ON assignment_dim.id = assignment_override_user_fact.assignment_id
+LEFT OUTER JOIN quiz_dim ON quiz_dim.id = assignment_override_user_fact.quiz_id
 WHERE account_dim.name = "Fuller Theological Seminary"
 AND account_dim.workflow_state != "deleted"
 AND enrollment_term_dim.name NOT IN ("All Other Courses", "Course Development (DL)", "Course Development (Faculty)", "Default Term", "Fuller Canvas Templates", "Orientation 2017", "Orientation 2018", "Orientation 2019", "Orientation 2020")

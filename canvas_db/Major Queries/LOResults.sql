@@ -84,11 +84,11 @@ account_dim.name AS "Account Name"
 , learning_outcome_result_dim.hidden AS "LO Result Hidden"
 , learning_outcome_result_dim.hide_points AS "LO Result Hide Points"
 FROM learning_outcome_result_fact
-JOIN assignment_dim ON assignment_dim.id = learning_outcome_result_fact.assignment_id
-JOIN course_dim ON course_dim.id = learning_outcome_result_fact.course_id
-JOIN enrollment_term_dim ON enrollment_term_dim.id = learning_outcome_result_fact.enrollment_term_id
-JOIN learning_outcome_dim ON learning_outcome_dim.id = learning_outcome_result_fact.learning_outcome_id
-JOIN learning_outcome_result_dim ON learning_outcome_result_dim.id = learning_outcome_result_fact.learning_outcome_result_id
-JOIN user_dim ON user_dim.id = learning_outcome_result_fact.user_id
-LEFT JOIN quiz_dim ON quiz_dim.id = learning_outcome_result_fact.quiz_id
-LEFT JOIN account_dim ON account_dim.id = learning_outcome_result_fact.account_id;
+INNER JOIN assignment_dim ON assignment_dim.id = learning_outcome_result_fact.assignment_id
+INNER JOIN course_dim ON course_dim.id = learning_outcome_result_fact.course_id
+INNER JOIN enrollment_term_dim ON enrollment_term_dim.id = learning_outcome_result_fact.enrollment_term_id
+INNER JOIN learning_outcome_dim ON learning_outcome_dim.id = learning_outcome_result_fact.learning_outcome_id
+INNER JOIN learning_outcome_result_dim ON learning_outcome_result_dim.id = learning_outcome_result_fact.learning_outcome_result_id
+INNER JOIN user_dim ON user_dim.id = learning_outcome_result_fact.user_id
+LEFT OUTER JOIN quiz_dim ON quiz_dim.id = learning_outcome_result_fact.quiz_id
+LEFT OUTER JOIN account_dim ON account_dim.id = learning_outcome_result_fact.account_id;

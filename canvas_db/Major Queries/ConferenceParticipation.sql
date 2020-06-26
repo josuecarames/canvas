@@ -37,12 +37,12 @@ account_dim.name AS "Account Name"
 , conference_participant_dim.created_at AS "Participant Created At"
 , conference_participant_dim.updated_at AS "Participant Updated At"
 FROM conference_participant_fact
-JOIN conference_dim ON conference_dim.id = conference_participant_fact.conference_id
-JOIN conference_participant_dim ON conference_participant_dim.id = conference_participant_fact.conference_participant_id
-JOIN course_dim ON course_dim.id = conference_participant_fact.course_id
-LEFT JOIN account_dim ON account_dim.id = conference_participant_fact.account_id
-LEFT JOIN group_dim ON group_dim.id = conference_participant_fact.group_id
-LEFT JOIN user_dim ON user_dim.id = conference_participant_fact.user_id
+INNER JOIN conference_dim ON conference_dim.id = conference_participant_fact.conference_id
+INNER JOIN conference_participant_dim ON conference_participant_dim.id = conference_participant_fact.conference_participant_id
+INNER JOIN user_dim ON user_dim.id = conference_participant_fact.user_id
+LEFT OUTER JOIN course_dim ON course_dim.id = conference_participant_fact.course_id
+LEFT OUTER JOIN account_dim ON account_dim.id = conference_participant_fact.account_id
+LEFT OUTER JOIN group_dim ON group_dim.id = conference_participant_fact.group_id
 WHERE account_dim.name = "Fuller Theological Seminary"
 AND account_dim.workflow_state != "deleted"
 AND course_dim.workflow_state != "deleted"

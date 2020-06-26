@@ -1,3 +1,4 @@
+USE canvas;
 SELECT 
 enrollment_term_dim.name AS "Term Name"
 , enrollment_term_dim.date_start AS "Term Start On"
@@ -74,10 +75,11 @@ enrollment_term_dim.name AS "Term Name"
 , file_dim.updated_at AS "File Updated At"
 , file_dim.viewed_at AS "File Viewed At"
 FROM submission_file_fact
-JOIN assignment_dim ON assignment_dim.id = submission_file_fact.assignment_id
-JOIN course_dim ON course_dim.id = submission_file_fact.course_id
-JOIN enrollment_term_dim ON enrollment_term_dim.id = submission_file_fact.enrollment_term_id
-JOIN file_dim ON file_dim.id = submission_file_fact.file_id
-/* (the following table does not exist in the database as of right now) JOIN grader_dim ON grader_dim.id = submission_file_fact.grader_id */
-LEFT JOIN submission_dim ON submission_dim.id = submission_file_fact.submission_id
-JOIN user_dim ON user_dim.id = submission_file_fact.user_id;
+INNER JOIN assignment_dim ON assignment_dim.id = submission_file_fact.assignment_id
+INNER JOIN course_dim ON course_dim.id = submission_file_fact.course_id
+INNER JOIN enrollment_term_dim ON enrollment_term_dim.id = submission_file_fact.enrollment_term_id
+INNER JOIN file_dim ON file_dim.id = submission_file_fact.file_id
+INNER JOIN submission_dim ON submission_dim.id = submission_file_fact.submission_id
+INNER JOIN user_dim ON user_dim.id = submission_file_fact.user_id
+-- LEFT OUTER JOIN grader_dim ON grader_dim.id = submission_file_fact.grader_id
+;
