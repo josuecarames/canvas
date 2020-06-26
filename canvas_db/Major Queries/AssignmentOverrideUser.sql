@@ -93,15 +93,15 @@ account_dim.name AS "Account Name"
 , assignment_override_user_dim.created_at AS "Assignment Overriding User Created At"
 , assignment_override_user_dim.updated_at AS "Assignment Overriding User Updated At"
 FROM assignment_override_user_fact
-JOIN account_dim ON account_dim.id = assignment_override_user_fact.account_id
+INNER JOIN account_dim ON account_dim.id = assignment_override_user_fact.account_id
+INNER JOIN assignment_override_dim ON assignment_override_dim.id = assignment_override_user_fact.assignment_override_id
+INNER JOIN assignment_override_user_dim ON assignment_override_user_dim.id = assignment_override_user_fact.assignment_override_user_id
+INNER JOIN course_dim ON course_dim.id = assignment_override_user_fact.course_id
+INNER JOIN enrollment_term_dim ON enrollment_term_dim.id = assignment_override_user_fact.enrollment_term_id
+INNER JOIN user_dim ON user_dim.id = assignment_override_user_fact.user_id
 LEFT JOIN assignment_group_dim ON assignment_group_dim.id = assignment_override_user_fact.assignment_group_id
 LEFT JOIN assignment_dim ON assignment_dim.id = assignment_override_user_fact.assignment_id
-JOIN assignment_override_dim ON assignment_override_dim.id = assignment_override_user_fact.assignment_override_id
-JOIN assignment_override_user_dim ON assignment_override_user_dim.id = assignment_override_user_fact.assignment_override_user_id
-JOIN course_dim ON course_dim.id = assignment_override_user_fact.course_id
-JOIN enrollment_term_dim ON enrollment_term_dim.id = assignment_override_user_fact.enrollment_term_id
 LEFT JOIN quiz_dim ON quiz_dim.id = assignment_override_user_fact.quiz_id
-JOIN user_dim ON user_dim.id = assignment_override_user_fact.user_id
 WHERE account_dim.name = "Fuller Theological Seminary"
 AND account_dim.workflow_state != "deleted"
 AND enrollment_term_dim.name NOT IN ("All Other Courses", "Course Development (DL)", "Course Development (Faculty)", "Default Term", "Fuller Canvas Templates", "Orientation 2017", "Orientation 2018", "Orientation 2019", "Orientation 2020")

@@ -15,8 +15,8 @@ course_dim.sis_source_id As "Course SIS"
 , assignment_group_dim.updated_at AS "Assignment Group Updated At"
 , assignment_group_dim.workflow_state AS "Assignment Group State"
 FROM assignment_group_fact
-JOIN assignment_group_dim ON assignment_group_dim.id = assignment_group_fact.assignment_group_id
-JOIN course_dim ON course_dim.id = assignment_group_fact.course_id
+INNER JOIN assignment_group_dim ON assignment_group_dim.id = assignment_group_fact.assignment_group_id
+INNER JOIN course_dim ON course_dim.id = assignment_group_fact.course_id
 WHERE course_dim.sis_source_id IS NOT NULL
 AND course_dim.workflow_state != "deleted"
 AND assignment_group_dim.workflow_state != "deleted"

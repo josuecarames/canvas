@@ -29,10 +29,10 @@ account_dim.name AS "Account Name"
 , enrollment_dim.completed_at AS "Enrollee Completed At"
 , enrollment_dim.workflow_state AS "Enrollee State"
 FROM assignment_group_score_fact
-JOIN account_dim ON account_dim.id = assignment_group_score_fact.account_id
-JOIN assignment_group_dim ON assignment_group_dim.id = assignment_group_score_fact.assignment_group_id
-JOIN course_dim ON course_dim.id = assignment_group_score_fact.course_id
-JOIN enrollment_dim ON enrollment_dim.id = assignment_group_score_fact.enrollment_id
+INNER JOIN account_dim ON account_dim.id = assignment_group_score_fact.account_id
+INNER JOIN assignment_group_dim ON assignment_group_dim.id = assignment_group_score_fact.assignment_group_id
+INNER JOIN course_dim ON course_dim.id = assignment_group_score_fact.course_id
+INNER JOIN enrollment_dim ON enrollment_dim.id = assignment_group_score_fact.enrollment_id
 WHERE account_dim.name = "Fuller Theological Seminary"
 AND account_dim.workflow_state != "deleted"
 AND course_dim.workflow_state != "deleted"
