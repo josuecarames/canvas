@@ -1,5 +1,4 @@
-USE 
-	canvas;
+USE canvas;
 SELECT
     account_dim.name AS "Account Name"
     , enrollment_term_dim.name AS "Term Name"
