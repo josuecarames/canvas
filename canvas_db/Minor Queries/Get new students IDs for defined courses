@@ -1,0 +1,14 @@
+USE canvas;
+SELECT canvas_id
+FROM pseudonym_dim
+WHERE 1=1
+AND sis_user_id LIKE 'G%'
+AND sis_user_id NOT LIKE 'G9%'
+AND user_id not in (
+    select enrollment_fact.user_id
+    from enrollment_fact 
+    inner join course_section_dim on course_section_dim.id = enrollment_fact.course_section_id
+    where 1=1     
+       and course_section_dim.sis_source_id in (77722.111987, 99999.123456) 
+)
+;
